@@ -74,7 +74,7 @@ export async function getServerSideProps() {
   if (process.env.ENVIRONMENT === 'local') {
     provider = new ethers.providers.JsonRpcProvider()
   } else if (process.env.ENVIRONMENT === 'testnet') {
-    provider = new ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/55ed44eac9054342affffcd192c1df86')
+    provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`)
    // provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.matic.today')
   } else {
     provider = new ethers.providers.JsonRpcProvider('https://polygon-rpc.com/')

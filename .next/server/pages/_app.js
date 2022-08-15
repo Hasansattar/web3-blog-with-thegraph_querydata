@@ -85,7 +85,7 @@ function MyApp({ Component , pageProps  }) {
                 walletconnect: {
                     package: (web3_provider_default()),
                     options: {
-                        infuraId: process.env.NEXT_PUBLIC_INFURA_ID
+                        infuraId: "55ed44eac9054342affffcd192c1df86"
                     }
                 }
             }

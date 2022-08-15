@@ -56,7 +56,7 @@ react_markdown__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.th
 
 /* import contract and owner addresses */ 
 
-const ipfsURI = 'https://ipfs.io/ipfs/';
+const ipfsURI = "https://ipfs.io/ipfs/";
 function Post({ post  }) {
     const account = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_context__WEBPACK_IMPORTED_MODULE_7__/* .AccountContext */ .w);
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
@@ -66,71 +66,53 @@ function Post({ post  }) {
             children: " Loading... "
         }));
     }
-    return(/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        children: [
-            " ",
-            post && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: container,
-                children: [
-                    " ",
-                    /* if the owner is the user, render an edit button */ _config__WEBPACK_IMPORTED_MODULE_9__/* .ownerAddress */ .Q === account && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: editPost,
-                        children: [
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(next_link__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                                href: `/edit-post/${id}`,
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                        children: "Edit post "
-                                    }),
-                                    " "
-                                ]
-                            }),
-                            " "
-                        ]
-                    }),
-                    " ",
-                    /* if the post has a cover image, render it */ post.coverImage && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                        src: post.coverImage,
-                        className: coverImageStyle
-                    }),
-                    " ",
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
+    return(/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+        children: post && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: container,
+            children: [
+                /* if the owner is the user, render an edit button */ _config__WEBPACK_IMPORTED_MODULE_9__/* .ownerAddress */ .Q === account && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: editPost,
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(next_link__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                        href: `/edit-post/${id}`,
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                            children: "Edit post "
+                        })
+                    })
+                }),
+                /* if the post has a cover image, render it */ post.coverImage && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                    src: post.coverImage,
+                    className: coverImageStyle
+                }),
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
+                    children: [
+                        " ",
+                        post.title,
+                        " "
+                    ]
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: contentContainer,
+                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_markdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
                         children: [
                             " ",
-                            post.title,
+                            post.content,
                             " "
                         ]
-                    }),
-                    " ",
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: contentContainer,
-                        children: [
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_markdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
-                                children: [
-                                    " ",
-                                    post.content,
-                                    " "
-                                ]
-                            }),
-                            " "
-                        ]
-                    }),
-                    " "
-                ]
-            }),
-            " "
-        ]
+                    })
+                })
+            ]
+        })
     }));
 };
 async function getStaticPaths() {
     /* here we fetch the posts from the network */ let provider;
-    if (process.env.ENVIRONMENT === 'local') {
+    if (process.env.ENVIRONMENT === "local") {
         provider = new ethers__WEBPACK_IMPORTED_MODULE_6__.ethers.providers.JsonRpcProvider();
-    } else if (process.env.ENVIRONMENT === 'testnet') {
-        provider = new ethers__WEBPACK_IMPORTED_MODULE_6__.ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/55ed44eac9054342affffcd192c1df86');
+    } else if (process.env.ENVIRONMENT === "testnet") {
+        provider = new ethers__WEBPACK_IMPORTED_MODULE_6__.ethers.providers.JsonRpcProvider("https://rinkeby.infura.io/v3/55ed44eac9054342affffcd192c1df86");
     // provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.matic.today')
     } else {
-        provider = new ethers__WEBPACK_IMPORTED_MODULE_6__.ethers.providers.JsonRpcProvider('https://polygon-rpc.com/');
+        provider = new ethers__WEBPACK_IMPORTED_MODULE_6__.ethers.providers.JsonRpcProvider("https://polygon-rpc.com/");
     }
     const contract = new ethers__WEBPACK_IMPORTED_MODULE_6__.ethers.Contract(_config__WEBPACK_IMPORTED_MODULE_9__/* .contractAddress */ .i, _artifacts_contracts_Blog_sol_Blog_json__WEBPACK_IMPORTED_MODULE_8__/* .abi */ .Mt, provider);
     const data = await contract.fetchPosts();
